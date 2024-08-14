@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Main";
+    Layout = "_Layout";
+    var imagePaths = ViewBag.ImagePaths as List<string>;
+}
+
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        @foreach (var imagePath in imagePaths)
+        {
+            <div class="swiper-slide">
+                <img src="~/files/photos/carousel/@imagePath" alt="Slide" />
+                <div class="caption">Caption for @imagePath</div>
+            </div>
+        }
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+    <!-- Add Navigation -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+</div>
