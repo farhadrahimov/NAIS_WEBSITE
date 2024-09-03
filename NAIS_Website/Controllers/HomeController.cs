@@ -28,6 +28,31 @@ namespace NAIS_Website.Controllers
             return View();
         }
 
+        public IActionResult Services()
+        {
+            return View();
+        }
+
+        public IActionResult Calculating()
+        {
+            return View();
+        }
+
+        public IActionResult Partners()
+        {
+            return View();
+        }
+
+        public IActionResult AboutUs()
+        {
+            return View();
+        }
+
+        public IActionResult Categories()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
