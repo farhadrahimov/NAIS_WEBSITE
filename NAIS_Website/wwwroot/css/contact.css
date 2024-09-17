@@ -1,0 +1,40 @@
+﻿.contact-container {
+    padding: 50px;
+    max-width: 600px;
+    height: 100%;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+    .contact-container h1 {
+        color: #333;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .contact-container .form-group {
+        margin-bottom: 15px;
+    }
+
+    .contact-container .form-control {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+    }
+
+    .contact-container .btn {
+        width: 100%;
+        padding: 10px;
+        background-color: rgb(109, 80, 115);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        .contact-container .btn:hover {
+            background-color: rgb(89, 65, 95);
+        }
