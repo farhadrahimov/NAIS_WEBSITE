@@ -40,6 +40,11 @@ namespace NAIS_Website.Controllers
 
         public IActionResult Partners()
         {
+            var folderPath = Path.Combine(_webHostEnvironment.WebRootPath, "files/photos/partners");
+            var imagePaths = Directory.GetFiles(folderPath)
+                          .Select(Path.GetFileName)
+                          .ToList();
+            ViewBag.ImagePaths = imagePaths;
             return View();
         }
 
@@ -48,7 +53,7 @@ namespace NAIS_Website.Controllers
             return View();
         }
 
-        public IActionResult Categories()
+        public IActionResult Catalog()
         {
             return View();
         }

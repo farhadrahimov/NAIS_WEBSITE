@@ -1,7 +1,18 @@
 ﻿@{
     ViewData["Title"] = "Partners";
     Layout = "_Layout";
+    var imagePaths = ViewBag.ImagePaths as List<string>;
 }
 
-<h2>Partners</h2>
-<p>Partners page content goes here.</p>
+<div class="partner-container">
+    <h1>Our Partners</h1>
+    <div class="partner-grid">
+        @foreach (var imagePath in imagePaths)
+        {
+            <div class="partner-card">
+                <img src="~/files/photos/partners/@imagePath" alt="Partner Logo" class="partner-image" />
+                <div class="caption">Partner: @imagePath</div>
+            </div>
+        }
+    </div>
+</div>
