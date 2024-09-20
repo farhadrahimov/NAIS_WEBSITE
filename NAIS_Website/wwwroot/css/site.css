@@ -161,6 +161,7 @@ body {
 .swiper-container {
     width: 100%;
     height: 100%;
+    overflow: hidden; /* Это поможет избежать тряски */
 }
 
 .swiper-slide {
@@ -168,11 +169,12 @@ body {
     align-items: center;
     justify-content: center;
     background-color: #000;
+    width: 100%; /* Чтобы слайд всегда занимал всю ширину */
 }
 
     .swiper-slide img {
         width: 100%;
-        height: auto; /* Изменено с 100% на auto */
+        height: auto;
         object-fit: cover;
     }
 
@@ -209,9 +211,9 @@ body {
         transition: left 0.3s;
     }
 
-    .sidebar.active {
-        left: 0;
-    }
+        .sidebar.active {
+            left: 0;
+        }
 
     .menu-footer {
         flex-direction: row;
@@ -219,7 +221,7 @@ body {
     }
 
     .container-fluid {
-        display: block;
+        display: block; /* Это значение может вызвать тряску */
     }
 
     .content {
