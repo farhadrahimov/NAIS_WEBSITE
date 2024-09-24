@@ -15,10 +15,13 @@
     <script src="~/js/swiper-bundle.min.js"></script>
 </head>
 <body>
+    <!-- Кнопка для мобильного меню -->
+    <button class="menu-toggle">☰</button>
+
     <div class="container-fluid">
         <div class="sidebar">
             <div class="logo">
-                <img src="~/files/photos/nais-logo.png" alt="NAIS Logo"/>
+                <img src="~/files/photos/nais-logo.png" alt="NAIS Logo" />
             </div>
             <nav class="menu" aria-label="Main Navigation">
                 <ul>
@@ -50,5 +53,12 @@
             @RenderBody()
         </div>
     </div>
+
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', function () {
+            document.querySelector('.sidebar').classList.toggle('active');
+        });
+    </script>
+
 </body>
 </html>

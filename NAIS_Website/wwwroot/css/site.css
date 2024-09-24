@@ -229,3 +229,45 @@ body {
     }
 }
 
+/* Добавление стиля для кнопки открытия меню */
+.menu-toggle {
+    display: none; /* По умолчанию скрыта */
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.7);
+    border: none;
+    color: white;
+    font-size: 24px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Для мобильных устройств */
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        width: 250px;
+        height: 100%;
+        left: -250px;
+        transition: left 0.3s;
+        z-index: 999;
+    }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+    .menu-toggle {
+        display: block; /* Показываем кнопку на мобильных */
+    }
+
+    .content {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+
