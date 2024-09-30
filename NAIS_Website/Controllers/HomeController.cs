@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NAIS_Website.Models;
+using NAIS_Website.Services;
 using System.Diagnostics;
 
 namespace NAIS_Website.Controllers
@@ -7,10 +8,12 @@ namespace NAIS_Website.Controllers
     public class HomeController : Controller
     {
         private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly IEmailService _emailService;
 
-        public HomeController(IWebHostEnvironment webHostEnvironment)
+        public HomeController(IWebHostEnvironment webHostEnvironment, IEmailService emailService)
         {
             _webHostEnvironment = webHostEnvironment;
+            _emailService = emailService;
         }
 
         public IActionResult Index()
@@ -23,8 +26,34 @@ namespace NAIS_Website.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult Contact()
         {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Contact(EmailModel emailModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                // Если данные формы не валидны, вернем представление с ошибками
+                return View(emailModel);
+            }
+
+            bool isEmailSent = await _emailService.SendEmail(emailModel);
+
+            if (isEmailSent)
+            {
+                // Сообщение об успешной отправке
+                ViewBag.Message = "Your message has been sent successfully!";
+            }
+            else
+            {
+                // Сообщение об ошибке
+                ViewBag.Message = "There was an error sending your message. Please try again later.";
+            }
+
             return View();
         }
 
