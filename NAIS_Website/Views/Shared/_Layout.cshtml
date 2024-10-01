@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/contact.css" />
     <link rel="stylesheet" href="~/css/partners.css" />
+    <link rel="stylesheet" href="~/css/aboutUs.css" />
+    <link rel="stylesheet" href="~/css/services.css" />
     <link rel="stylesheet" href="~/css/swiper-bundle.min.css" />
     <script src="~/js/swiper-bundle.min.js"></script>
 </head>
@@ -20,9 +22,13 @@
 
     <div class="container-fluid">
         <div class="sidebar">
-            <div class="logo">
-                <img src="~/files/photos/nais-logo.png" alt="NAIS Logo" />
-            </div>
+
+            <a href="@Url.Action("Index", "Home")">
+                <div class="logo">
+                    <img src="~/files/photos/nais-logo.png" alt="NAIS Logo" />
+                </div>
+            </a>
+
             <nav class="menu" aria-label="Main Navigation">
                 <ul>
                     <li><a href="@Url.Action("Index", "Home")">Ana Səhifə</a></li>
@@ -36,8 +42,9 @@
             </nav>
             <div class="menu-footer">
                 <div class="social-media">
-                    <a href="#" aria-label="Facebook"><img src="~/files/photos/Facebook_logo.png" alt="Facebook" /></a>
-                    <a href="#" aria-label="Instagram"><img src="~/files/photos/Instagram_logo.png" alt="Instagram" /></a>
+                    <a href="https://www.tiktok.com/&#64;naismetbee?_t=8qB6iQDT4Lv&_r=1" aria-label="TikTok"><img src="~/files/photos/tiktok-logo.png" alt="TikTok" /></a>
+                    <a href="https://www.instagram.com/naismetbee/" aria-label="Instagram"><img src="~/files/photos/Instagram_logo.png" alt="Instagram" /></a>
+                    <a href="https://wa.me/message/EDW6XJYZACNQG1" aria-label="Whatsapp"><img src="~/files/photos/whatsapp.png" alt="Whatsapp" /></a>
                 </div>
                 <div class="languages">
                     <a href="#">AZ</a>

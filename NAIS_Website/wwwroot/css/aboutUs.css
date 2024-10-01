@@ -1,0 +1,51 @@
+﻿.about-us-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background-color: #f9f9f9;
+    color: #333;
+
+    background-image: url('../files/photos/BackgroundCity.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.about-us-text {
+    flex: 1;
+    margin-right: 20px;
+}
+
+    .about-us-text h1 {
+        color: #333;
+        text-align: center;
+    }
+
+    .about-us-text p {
+        font-size: 18px;
+        line-height: 1.6;
+        text-align: justify;
+        color: #6d5073;
+    }
+
+.about-us-photo {
+    flex: 0.5;
+}
+
+    .about-us-photo img {
+        width: 60%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+@media (max-width: 768px) {
+    .about-us-container {
+        flex-direction: column;
+    }
+
+    .about-us-photo {
+        margin-top: 20px;
+    }
+}
