@@ -4,7 +4,7 @@
 }
 
 <div class="contact-container">
-    <h1>Bizimlə əlaqə</h1>
+    <h1>Qiymət təklifi al</h1>
 
     @* Если есть сообщение, выводим его *@
     @if (ViewBag.Message != null)
@@ -14,15 +14,15 @@
 
     <form asp-action="Contact" method="post">
         <div class="form-group">
-            <label for="name">Name:</label>
+            <label for="name">Ad, Soyad :</label>
             <input type="text" id="name" name="Name" class="form-control" required>
         </div>
         <div class="form-group">
-            <label for="email">Email:</label>
+            <label for="email">Email :</label>
             <input type="email" id="email" name="Email" class="form-control" required>
         </div>
         <div class="form-group">
-            <label for="message">Message:</label>
+            <label for="message">Qeydləriniz :</label>
             <textarea id="message" name="Message" class="form-control" rows="5" required></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Send</button>

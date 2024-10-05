@@ -5,6 +5,12 @@ using System.Diagnostics;
 
 namespace NAIS_Website.Controllers
 {
+    public class FileModel
+    {
+        public string FileName { get; set; } = string.Empty;
+        public string FileNameWithoutExtension { get; set; } = string.Empty;
+    }
+
     public class HomeController : Controller
     {
         private readonly IWebHostEnvironment _webHostEnvironment;
@@ -59,6 +65,15 @@ namespace NAIS_Website.Controllers
 
         public IActionResult Services()
         {
+            var folderPath = Path.Combine(_webHostEnvironment.WebRootPath, "files/photos/services");
+            var imageData = Directory.GetFiles(folderPath)
+                                .Select(file => new FileModel
+                                {
+                                    FileName = Path.GetFileName(file),
+                                    FileNameWithoutExtension = Path.GetFileNameWithoutExtension(file)
+                                })
+                                .ToList();
+            ViewBag.ImageData = imageData;
             return View();
         }
 
