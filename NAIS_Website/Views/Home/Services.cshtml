@@ -4,20 +4,22 @@
     var imageData = ViewBag.ImageData as List<NAIS_Website.Controllers.FileModel>;
 }
 
-<div class="services-container">
+<div class="ag-format-container">
     <h1 class="page-title">Xidmətlərimiz</h1>
-    <div class="services-grid">
+    <div class="service-divider"></div>
+    <div class="ag-courses_box">
         @foreach (var image in imageData)
         {
-            <div class="service-card">
-                <img src="~/files/photos/services/@image.FileName" alt="Service Image" class="partner-image" />
-                <div class="service-info">
-                    <h3 class="service-title">@image.FileNameWithoutExtension</h3>
-                    <p class="service-description">Short description of this service.</p>
-                    <a href="/Services/Detail/1" class="service-link">Learn More</a>
-                </div>
+            <div class="ag-courses_item">
+                <a href="/Services/Detail/1" class="ag-courses-item_link">
+                    <div class="ag-courses-item_bg"></div>
+                    <img src="~/files/photos/services/@image.FileName" alt="Service Image" class="service-image" />
+                    <h3 class="ag-courses-item_title">@image.FileNameWithoutExtension</h3>
+                    <div class="ag-courses-item_date-box">
+                        <span class="ag-courses-item_date">Service Description</span>
+                    </div>
+                </a>
             </div>
         }
     </div>
 </div>
-

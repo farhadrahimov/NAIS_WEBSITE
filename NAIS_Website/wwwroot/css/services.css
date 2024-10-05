@@ -1,81 +1,172 @@
-﻿/* Основные стили для сетки карточек */
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-    padding: 20px;
-    justify-items: center;
-}
-
-/* Карточка услуги */
-.service-card {
-    position: relative;
-    overflow: hidden;
-    border-radius: 10px;
-    width: 100%;
-    max-width: 400px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Контент внутри карточки */
-.service-content {
-    position: relative;
+﻿.page-title {
+    color: #333;
     text-align: center;
-    color: white;
+    margin-bottom: 20px; /* Уменьшил отступ для гармонии с линией */
+    font-size: 2.5rem;
+}
+
+.ag-format-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f9f9f9;
+    padding: 50px;
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.service-divider {
+    align-self: center;
+    width: 80%; /* Ширина линии */
+    height: 5px; /* Толщина линии */
+    background-color: #d2c3cb; /* Цвет линии */
+    margin-bottom: 20px; /* Отступы сверху и снизу */
+    border-radius: 2px; /* Скругление для аккуратности */
+}
+
+.ag-courses_box {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 50px 0;
+}
+
+.ag-courses_item {
+    flex-basis: calc(30% - 30px);
+    margin: 0 15px 30px;
+    overflow: hidden;
+    border-radius: 28px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: none;
+    display: flex;
+    flex-direction: column;
+    height: 350px;
+    position: relative; /* Ensure relative positioning for the background animation */
+    transition: transform 0.3s ease; /* Add animation for hover effect */
+}
+
+    .ag-courses_item:hover {
+        transform: scale(1.05); /* Slight zoom effect on hover */
+    }
+
+.ag-courses-item_link {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 0;
+    background-color: transparent;
+    text-decoration: none;
+    position: relative;
     overflow: hidden;
 }
 
-/* Изображение в карточке, которое будет на всю карту */
 .service-image {
     width: 100%;
-    height: 250px;
-    background-size: cover;
-    background-position: center;
-    transition: transform 0.4s ease;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 15px 15px 0 0;
 }
 
-/* Заголовок услуги */
-.service-title {
+.ag-courses-item_title {
+    margin: 15px 20px 10px;
+    font-weight: bold;
+    font-size: 24px;
+    color: #000;
+    position: relative;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.ag-courses-item_date-box {
+    font-size: 16px;
+    color: #666;
+    position: relative;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.ag-courses-item_date {
+    font-weight: bold;
+    color: #f9b234;
+}
+
+.ag-courses-item_bg {
+    height: 128px;
+    width: 128px;
+    background-color: #f9b234;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 18px;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 10px 15px;
-    border-radius: 5px;
-    transition: top 0.3s ease;
+    top: -75px;
+    right: -75px;
+    border-radius: 50%;
+    transition: transform 0.5s ease; /* Ensure background animation on hover */
 }
 
-/* Кнопка "Подробнее", изначально скрыта */
-.service-link {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: rgb(109, 80, 115);
-    padding: 10px 20px;
-    color: white;
-    border-radius: 5px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+.ag-courses-item_link:hover .ag-courses-item_bg {
+    transform: scale(10); /* The scaling effect when hovered */
 }
 
-/* Эффекты при hover */
-.service-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+.ag-courses_item:nth-child(2n) .ag-courses-item_bg {
+    background-color: #3ecd5e;
 }
 
-    .service-card:hover .service-image {
-        transform: scale(1.05);
+.ag-courses_item:nth-child(3n) .ag-courses-item_bg {
+    background-color: #e44002;
+}
+
+.ag-courses_item:nth-child(4n) .ag-courses-item_bg {
+    background-color: #952aff;
+}
+
+.ag-courses_item:nth-child(5n) .ag-courses-item_bg {
+    background-color: #cd3e94;
+}
+
+.ag-courses_item:nth-child(6n) .ag-courses-item_bg {
+    background-color: #4c49ea;
+}
+
+@media only screen and (max-width: 979px) {
+    .page-title {
+        font-size: 32px;
     }
 
-    .service-card:hover .service-title {
-        top: 20%;
+    .ag-courses_item {
+        flex-basis: calc(45% - 30px);
     }
 
-    .service-card:hover .service-link {
-        opacity: 1;
+    .ag-courses-item_title {
+        font-size: 20px;
     }
+}
+
+@media only screen and (max-width: 767px) {
+    .ag-format-container {
+        width: 96%;
+    }
+}
+
+@media only screen and (max-width: 639px) {
+    .page-title {
+        font-size: 28px;
+    }
+
+    .ag-courses_item {
+        flex-basis: 100%;
+    }
+
+    .ag-courses-item_title {
+        min-height: 72px;
+        font-size: 18px;
+    }
+
+    .ag-courses-item_link {
+        padding: 22px 40px;
+    }
+
+    .ag-courses-item_date-box {
+        font-size: 14px;
+    }
+}

@@ -1,15 +1,11 @@
 ﻿.about-us-container {
     display: flex;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     padding: 40px;
     background-color: #f9f9f9;
-    color: #333;
-
-    background-image: url('../files/photos/BackgroundCity.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    gap: 20px; /* Отступ между текстом и изображением */
 }
 
 .about-us-text {
@@ -19,7 +15,8 @@
 
     .about-us-text h1 {
         color: #333;
-        text-align: center;
+        text-align: left;
+        margin-bottom: 20px;
     }
 
     .about-us-text p {
@@ -30,7 +27,8 @@
     }
 
 .about-us-photo {
-    flex: 0.5;
+    flex: 1;
+    max-width: 500px; /* Ограничение максимальной ширины изображения */
 }
 
     .about-us-photo img {
@@ -40,12 +38,39 @@
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
+/* Респонсивные стили для экранов до 768px */
 @media (max-width: 768px) {
     .about-us-container {
         flex-direction: column;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .about-us-text {
+        margin-right: 0;
+        margin-bottom: 20px;
     }
 
     .about-us-photo {
-        margin-top: 20px;
+        max-width: 100%; /* Изображение занимает 100% ширины */
+    }
+
+        .about-us-photo img {
+            width: 80%; /* Уменьшаем изображение до 80% ширины */
+        }
+}
+
+/* Для маленьких экранов до 480px */
+@media (max-width: 480px) {
+    .about-us-container {
+        padding: 10px;
+    }
+
+    .about-us-photo img {
+        width: 100%; /* Полная ширина изображения на очень маленьких экранах */
+    }
+
+    .about-us-text p {
+        font-size: 16px; /* Немного уменьшаем шрифт для удобства чтения */
     }
 }
