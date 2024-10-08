@@ -1,9 +1,17 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using NAIS_Website.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Panel/Login";
+        options.AccessDeniedPath = "/Panel/AccessDenied";
+    });
+
 builder.Services.AddTransient<IEmailService, EmailService>();
 
 var app = builder.Build();
@@ -21,7 +29,14 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "sitemap",
+    pattern: "sitemap.xml",
+    defaults: new { controller = "Sitemap", action = "Index" }
+);
 
 app.MapControllerRoute(
     name: "default",
