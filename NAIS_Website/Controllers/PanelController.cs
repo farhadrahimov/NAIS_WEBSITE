@@ -1,14 +1,24 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using System.Text;
 
 namespace NAIS_Website.Controllers
 {
     public class PanelController : Controller
     {
-        private const string Username = "Admin1";
-        private const string Password = "Nais0102@";
+        private readonly string _userName;
+        private readonly string _hashedPassword;
+        private readonly IPasswordHasher<object> _passwordHasher;
+
+        public PanelController(IConfiguration configuration, IPasswordHasher<object> passwordHasher)
+        {
+            _userName = configuration["StaticUser:UserName"];
+            _hashedPassword = configuration["StaticUser:Password"];
+            _passwordHasher = passwordHasher;
+        }
 
         [HttpGet]
         public IActionResult Login()
@@ -18,8 +28,8 @@ namespace NAIS_Website.Controllers
 
         [HttpPost]
         public async Task<IActionResult> Login(string username, string password)
-        {
-            if(username == Username && password == Password)
+        {            
+            if (username == _userName && _passwordHasher.VerifyHashedPassword(null, _hashedPassword, password) == PasswordVerificationResult.Success)
             {
                 var Claims = new List<Claim>
                 {
