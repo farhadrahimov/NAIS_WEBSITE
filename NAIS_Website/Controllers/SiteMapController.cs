@@ -8,7 +8,6 @@ namespace NAIS_Website.Controllers
     {
         public IActionResult Index()
         {
-            // Создаем XML-документ
             XNamespace ns = "http://www.sitemaps.org/schemas/sitemap/0.9";
             var sitemap = new XDocument(new XDeclaration("1.0", "utf-8", "yes"),
                 new XElement(ns + "urlset",
@@ -18,17 +17,27 @@ namespace NAIS_Website.Controllers
                         new XElement(ns + "changefreq", "daily"),
                         new XElement(ns + "priority", "1.0")
                     ),
-                    // Добавьте другие URL-адреса сайта
                     new XElement(ns + "url",
-                        new XElement(ns + "loc", $"{Request.Scheme}://{Request.Host}/about-us"),
+                        new XElement(ns + "loc", $"{Request.Scheme}://{Request.Host}/home/aboutus"),
                         new XElement(ns + "lastmod", DateTime.Now.ToString("yyyy-MM-dd")),
                         new XElement(ns + "changefreq", "weekly"),
                         new XElement(ns + "priority", "0.8")
+                    ),
+                    new XElement(ns + "url",
+                        new XElement(ns + "loc", $"{Request.Scheme}://{Request.Host}/home/contact"),
+                        new XElement(ns + "lastmod", DateTime.Now.ToString("yyyy-MM-dd")),
+                        new XElement(ns + "changefreq", "weekly"),
+                        new XElement(ns + "priority", "0.7")
+                    ),
+                      new XElement(ns + "url",
+                        new XElement(ns + "loc", $"{Request.Scheme}://{Request.Host}/home/services"),
+                        new XElement(ns + "lastmod", DateTime.Now.ToString("yyyy-MM-dd")),
+                        new XElement(ns + "changefreq", "weekly"),
+                        new XElement(ns + "priority", "0.6")
                     )
                 )
             );
 
-            // Возвращаем XML
             return Content(sitemap.ToString(), "application/xml", Encoding.UTF8);
         }
     }

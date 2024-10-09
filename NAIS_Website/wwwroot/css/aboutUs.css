@@ -1,76 +1,70 @@
-﻿.about-us-container {
+﻿body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+.about-us-container {
     display: flex;
-    flex-direction: row;
-    align-items: center;
     justify-content: space-between;
-    padding: 40px;
-    background-color: #f9f9f9;
-    gap: 20px; /* Отступ между текстом и изображением */
+    align-items: center;
+    min-height: 100vh;
+    background-image: url('/files/photos/BackgroundCity.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
 }
 
 .about-us-text {
-    flex: 1;
-    margin-right: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 45%;
+    text-align: left;
 }
 
     .about-us-text h1 {
+        font-size: 2.5rem;
         color: #333;
-        text-align: left;
         margin-bottom: 20px;
     }
 
     .about-us-text p {
-        font-size: 18px;
+        font-size: 1.2rem;
+        color: #463460;
         line-height: 1.6;
-        text-align: justify;
-        color: #6d5073;
     }
 
 .about-us-photo {
-    flex: 1;
-    max-width: 500px; /* Ограничение максимальной ширины изображения */
+    max-width: 45%;
 }
 
     .about-us-photo img {
-        width: 100%;
+        max-width: 100%;
         height: auto;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        margin-bottom: 50px;
     }
 
-/* Респонсивные стили для экранов до 768px */
+/* Адаптация для мобильных устройств */
 @media (max-width: 768px) {
     .about-us-container {
         flex-direction: column;
-        padding: 20px;
-        text-align: center;
-    }
-
-    .about-us-text {
-        margin-right: 0;
-        margin-bottom: 20px;
-    }
-
-    .about-us-photo {
-        max-width: 100%; /* Изображение занимает 100% ширины */
-    }
-
-        .about-us-photo img {
-            width: 80%; /* Уменьшаем изображение до 80% ширины */
-        }
-}
-
-/* Для маленьких экранов до 480px */
-@media (max-width: 480px) {
-    .about-us-container {
         padding: 10px;
     }
 
-    .about-us-photo img {
-        width: 100%; /* Полная ширина изображения на очень маленьких экранах */
+    .about-us-text, .about-us-photo {
+        max-width: 100%;
+        margin-bottom: 20px;
     }
 
-    .about-us-text p {
-        font-size: 16px; /* Немного уменьшаем шрифт для удобства чтения */
-    }
+        .about-us-text h1 {
+            font-size: 2rem;
+        }
+
+        .about-us-text p {
+            font-size: 1rem;
+        }
 }

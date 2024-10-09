@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -7,13 +8,13 @@ using System.Text;
 
 namespace NAIS_Website.Controllers
 {
-    public class PanelController : Controller
+    public class AdminController : Controller
     {
         private readonly string _userName;
         private readonly string _hashedPassword;
         private readonly IPasswordHasher<object> _passwordHasher;
 
-        public PanelController(IConfiguration configuration, IPasswordHasher<object> passwordHasher)
+        public AdminController(IConfiguration configuration, IPasswordHasher<object> passwordHasher)
         {
             _userName = configuration["StaticUser:UserName"];
             _hashedPassword = configuration["StaticUser:Password"];
@@ -39,13 +40,20 @@ namespace NAIS_Website.Controllers
                 var claimsIdentity = new ClaimsIdentity(Claims,CookieAuthenticationDefaults.AuthenticationScheme);
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
 
-                return RedirectToAction("GetAll","Catalog");
+                return RedirectToAction("Panel","Admin");
             }
 
             ViewBag.Error = "Daxil etdiyiniz məlumatlar yalnışdır, yenidən cəhd edin";
             return View();
         }
 
+        [Authorize]
+        public IActionResult Panel()
+        {
+            return View();
+        }
+
+        [Authorize]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
@@ -55,11 +63,6 @@ namespace NAIS_Website.Controllers
         public IActionResult AccessDenied()
         {
             return StatusCode(403);
-        }
-
-        public IActionResult Index()
-        {
-            return View();
         }
     }
 }

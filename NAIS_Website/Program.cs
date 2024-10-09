@@ -16,8 +16,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
-        options.LoginPath = "/Panel/Login";
-        options.AccessDeniedPath = "/Panel/AccessDenied";
+        options.LoginPath = "/Admin/Login";
+        options.AccessDeniedPath = "/Admin/AccessDenied";
     });
 
 builder.Services.AddTransient<IEmailService, EmailService>();
