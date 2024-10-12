@@ -1,0 +1,115 @@
+﻿/* Общие стили для страницы */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.createContainer {
+    max-width: 800px; /* Ширина контейнера */
+    margin: 50px auto; /* Центрирование */
+    padding: 20px;
+    background-color: white; /* Цвет фона для формы */
+    border-radius: 8px; /* Скругление углов */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Тень для выделения */
+}
+
+.createContainerCard {
+    background-color: white; /* White background for the card */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 400px; /* Adjust width as needed */
+}
+
+.createPageTitle {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-control {
+    max-width: 100%;
+    max-height: 150px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+}
+
+    .form-control:focus {
+        border-color: #007bff; /* Цвет границы при фокусе */
+        outline: none; /* Убираем обводку */
+    }
+
+.btn {
+    background-color: #007bff; /* Цвет кнопки */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    .btn:hover {
+        background-color: #0056b3; /* Цвет кнопки при наведении */
+    }
+
+.btn-secondary {
+    background-color: #6c757d; /* Цвет для кнопки "Ana səhifə" */
+}
+
+    .btn-secondary:hover {
+        background-color: #5a6268; /* Цвет при наведении */
+    }
+
+/* Стили для сообщений об ошибках */
+.alert {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .createContainerCard {
+        width: 90%; /* Full width on smaller screens */
+        margin: 0 auto; /* Center the card */
+        padding: 15px; /* Adjust padding */
+    }
+
+    .createPageTitle {
+        font-size: 1.5rem; /* Smaller title font size */
+    }
+}
+
+@media (max-width: 576px) {
+    .createContainer {
+        padding: 10px; /* Reduce padding */
+    }
+
+    .createContainerCard {
+        padding: 10px; /* Adjust card padding */
+    }
+
+    .createPageTitle {
+        font-size: 1.2rem; /* Even smaller title font size */
+    }
+}

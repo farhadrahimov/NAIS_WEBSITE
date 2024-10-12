@@ -48,16 +48,16 @@ namespace NAIS_Website.Controllers
         }
 
         [Authorize]
-        public IActionResult Panel()
-        {
-            return View();
-        }
-
-        [Authorize]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Login");
+        }
+
+        [Authorize]
+        public IActionResult Panel()
+        {
+            return View();
         }
 
         public IActionResult AccessDenied()

@@ -1,0 +1,94 @@
+﻿/* Общие стили для страницы */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.backButtonContainer {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.btnBack {
+    background-color: #6c757d;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    .btnBack:hover {
+        background-color: #5a6268;
+    }
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.pageTitle {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Стиль для кнопки "Əlavə et" */
+.containerbtnCreate {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.btnCreate {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    .btnCreate:hover {
+        background-color: #0056b3;
+    }
+
+/* Пагинация */
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+}
+
+    .pagination li {
+        margin: 0 5px;
+    }
+
+    .pagination a {
+        color: #007bff;
+        padding: 10px 15px;
+        text-decoration: none;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+    }
+
+        .pagination a:hover {
+            background-color: #ddd;
+        }
+
+    .pagination .active a {
+        background-color: #007bff;
+        color: white;
+        border-color: #007bff;
+    }

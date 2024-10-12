@@ -1,23 +1,11 @@
 ﻿@{
-    Layout = null;
+    Layout = "_PanelLayout";
     ViewBag.Title = "Panel";
 }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/panel.css" />
-    <title>@ViewData["Title"]</title>
-</head>
-<body>
-    <div class="container">
-        <h1>Admin Panel</h1>
-        <a href="#" class="btn">Kataloq</a>
-        <a href="#" class="btn">Vakansiya</a>
-    </div>
-</body>
-</html>
-
+<div class="container">
+    <h1>Admin Panel</h1>
+    <a href="@Url.Action("GetAll", "Catalog")" class="btn">Kataloq</a>
+    <a href="@Url.Action("Index", "CatalogCategory")" class="btn">Kataloq kateqoriyaları</a>
+    <a href="#" class="btn">Vakansiya</a>
+</div>

@@ -1,0 +1,31 @@
+﻿@model CatalogCategory
+
+@{
+    Layout = "_PanelLayout";
+    ViewBag.Title = "Edit Catalog Categories";
+}
+
+<div class="createContainer">
+    <div class="createContainerCard">
+        <h1 class="createPageTitle">Redaktə et</h1>
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group mb-3">
+                <label asp-for="Name" class="form-label">Kateqoriya adı:</label>
+                <input asp-for="Name" class="form-control" style="max-width: 100%;" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Note" class="form-label">Qeyd:</label>
+                <textarea asp-for="Note" class="form-control" rows="3" maxlength="250" style="max-width: 100%;"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Yadda saxla</button>
+            @if (ViewBag.Error != null)
+            {
+                <div class="alert alert-danger text-center mt-3">@ViewBag.Error</div>
+            }
+        </form>
+
+        <a asp-action="Index" class="btn btn-secondary mt-3">Ana səhifə</a>
+    </div>
+</div>
