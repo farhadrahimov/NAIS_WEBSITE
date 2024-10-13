@@ -49,7 +49,7 @@ namespace NAIS_Website.Controllers
             {
                 if (!CatalogCategoryExists(catalogCategory.Name))
                 {
-                    _dbContext.Add(catalogCategory);
+                    _dbContext.CatalogCategory.Add(catalogCategory);
                     await _dbContext.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
                 }
@@ -69,7 +69,7 @@ namespace NAIS_Website.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             var catalogCategory = await _dbContext.CatalogCategory.FindAsync(id);
-            if (catalogCategory == null || catalogCategory.DeleteStatus)
+            if (catalogCategory == null)
             {
                 return NotFound();
             }

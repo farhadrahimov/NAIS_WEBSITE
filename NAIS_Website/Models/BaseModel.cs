@@ -6,7 +6,7 @@ namespace NAIS_Website.Models
     {
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Bu xananı boş qoymaq olmaz")]
         [MaxLength(200, ErrorMessage = "Maksimum icazə verilən simvol sayı: 200")]
         public string Name { get; set; } = string.Empty;
 
