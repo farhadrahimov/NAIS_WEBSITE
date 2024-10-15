@@ -69,13 +69,15 @@
             </tbody>
         </table>
     </div>
-    <div class="pagination-container">
+    <div class="pagination">
         @if (Model.HasPreviousPage)
         {
             <a asp-action="Index" asp-route-page="@(Model.CurrentPage - 1)" asp-route-sortOrder="@ViewBag.CurrentSortOrder" class="btnPagination">Əvvəlki</a>
         }
 
-        <span>Səhifə @Model.CurrentPage - @Model.TotalPages</span>
+        <span class="page-info">
+            Səhifə <strong>@Model.CurrentPage</strong> - @Model.TotalPages
+        </span>
 
         @if (Model.HasNextPage)
         {

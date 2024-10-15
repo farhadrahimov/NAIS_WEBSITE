@@ -1,26 +1,18 @@
-﻿/* Общие стили для страницы */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-}
-
-.createContainer {
-    max-width: 800px; /* Ширина контейнера */
-    margin: 50px auto; /* Центрирование */
+﻿.createContainer {
+    max-width: 800px;
+    margin: 50px auto;
     padding: 20px;
-    background-color: white; /* Цвет фона для формы */
-    border-radius: 8px; /* Скругление углов */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Тень для выделения */
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .createContainerCard {
-    background-color: white; /* White background for the card */
+    background-color: white;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 400px; /* Adjust width as needed */
+    width: 400px;
 }
 
 .createPageTitle {
@@ -50,12 +42,12 @@ body {
 }
 
     .form-control:focus {
-        border-color: #007bff; /* Цвет границы при фокусе */
-        outline: none; /* Убираем обводку */
+        border-color: #007bff;
+        outline: none;
     }
 
 .btn {
-    background-color: #007bff; /* Цвет кнопки */
+    background-color: #007bff;
     color: white;
     padding: 10px 15px;
     border: none;
@@ -66,18 +58,17 @@ body {
 }
 
     .btn:hover {
-        background-color: #0056b3; /* Цвет кнопки при наведении */
+        background-color: #0056b3;
     }
 
 .btn-secondary {
-    background-color: #6c757d; /* Цвет для кнопки "Ana səhifə" */
+    background-color: #6c757d;
 }
 
     .btn-secondary:hover {
-        background-color: #5a6268; /* Цвет при наведении */
+        background-color: #5a6268;
     }
 
-/* Стили для сообщений об ошибках */
 .alert {
     background-color: #f8d7da;
     color: #721c24;
@@ -90,26 +81,26 @@ body {
 
 @media (max-width: 768px) {
     .createContainerCard {
-        width: 90%; /* Full width on smaller screens */
-        margin: 0 auto; /* Center the card */
-        padding: 15px; /* Adjust padding */
+        width: 90%;
+        margin: 0 auto;
+        padding: 15px;
     }
 
     .createPageTitle {
-        font-size: 1.5rem; /* Smaller title font size */
+        font-size: 1.5rem;
     }
 }
 
 @media (max-width: 576px) {
     .createContainer {
-        padding: 10px; /* Reduce padding */
+        padding: 10px;
     }
 
     .createContainerCard {
-        padding: 10px; /* Adjust card padding */
+        padding: 10px;
     }
 
     .createPageTitle {
-        font-size: 1.2rem; /* Even smaller title font size */
+        font-size: 1.2rem;
     }
 }

@@ -2,28 +2,31 @@
 
 @{
     Layout = "_PanelLayout";
-    ViewBag.Title = "Create Catalog";
+    ViewBag.Title = "Edit Catalog";
 
     var categories = ViewBag.Categories as List<CatalogCategory>;
 }
 
 <div class="createContainer">
     <div class="createContainerCard">
-        <h1 class="createPageTitle">Əlavə et</h1>
+        <h1 class="createPageTitle">Redaktə et</h1>
         @if (ViewBag.Error != null)
         {
             <div class="alert alert-danger text-center">@ViewBag.Error</div>
         }
-        <form asp-action="Create" method="post" enctype="multipart/form-data">
-            <div class="form-group mb-4">
+        <form asp-action="Edit" method="post" enctype="multipart/form-data">
+            <!-- Hidden field to store the ID of the catalog -->
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group mb-3">
                 <label asp-for="Name" class="form-label">Ad:</label>
-                <input asp-for="Name" class="form-control" />
+                <input asp-for="Name" class="form-control" style="max-width: 100%;" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
 
-            <div class="form-group mb-4">
+            <div class="form-group mb-3">
                 <label asp-for="Category" class="form-label">Kateqoriya:</label>
-                <select asp-for="Category" class="form-control">
+                <select asp-for="Category" class="form-control" style="max-width: 100%;">
                     <option value="">Kateqoriya seçin</option>
                     @if (categories != null)
                     {
@@ -36,14 +39,25 @@
                 <span asp-validation-for="Category" class="text-danger"></span>
             </div>
 
-            <div class="form-group mb-4">
+            <div class="form-group mb-3">
                 <label asp-for="Note" class="form-label">Qeyd:</label>
-                <textarea asp-for="Note" class="form-control" rows="3" maxlength="250"></textarea>
+                <textarea asp-for="Note" class="form-control" rows="3" maxlength="250" style="max-width: 100%;"></textarea>
             </div>
 
-            <div class="form-group mb-4">
+            <div class="form-group mb-3">
                 <label class="form-label">Şəkil yüklə:</label>
-                <input type="file" name="imageFile" class="form-control" />
+                <input type="file" name="imageFile" class="form-control" style="max-width: 100%;" />
+
+                <!-- Hidden field to keep the existing image path if no new image is uploaded -->
+                <input type="hidden" asp-for="ImagePath" />
+
+                <!-- If an image already exists, show it and offer an option to change -->
+                @if (!string.IsNullOrEmpty(Model.ImagePath))
+                {
+                    <p>Mövcud şəkil:</p>
+                    <img src="/@(Model.ImagePath.Replace(@"\", "/"))" alt="Current Image" style="max-width: 100px;" />
+                }
+
                 @if (ViewBag.ImageFileError != null)
                 {
                     <span class="text-danger">@ViewBag.ImageFileError</span>

@@ -86,7 +86,6 @@ namespace NAIS_Website.Controllers
         {
             if (!string.IsNullOrWhiteSpace(catalog.Name) && catalog.Category != 0 && imageFile != null)
             {
-
                 catalog.ImagePath = await _imageService.SaveImageAsync(imageFile);
                 _dbContext.Catalog.Add(catalog);
                 await _dbContext.SaveChangesAsync();
@@ -101,13 +100,14 @@ namespace NAIS_Website.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            var category = await _dbContext.Catalog.FindAsync(id);
-            if (category == null)
+            ViewBag.Categories = await CallCatalogCategory();
+            var catalog = await _dbContext.Catalog.FindAsync(id);
+            if (catalog == null)
             {
                 return NotFound();
             }
 
-            return View(category);
+            return View(catalog);
         }
 
         [HttpPost]
@@ -118,8 +118,7 @@ namespace NAIS_Website.Controllers
             {
                 return BadRequest();
             }
-
-            if (ModelState.IsValid)
+            if (!string.IsNullOrWhiteSpace(catalog.Name) && catalog.Category != 0)
             {
                 if (imageFile != null)
                 {
