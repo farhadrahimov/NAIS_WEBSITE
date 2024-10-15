@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using NAIS_Website.Database;
 using NAIS_Website.Models;
 using NAIS_Website.Services;
@@ -16,13 +18,19 @@ namespace NAIS_Website.Controllers
     {
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IEmailService _emailService;
+        private readonly IMemoryCache _memoryCache;
         private readonly ApplicationDbContext _dbContext;
+        private readonly TimeSpan CacheDuration = TimeSpan.FromMinutes(10);
 
-        public HomeController(IWebHostEnvironment webHostEnvironment, IEmailService emailService, ApplicationDbContext dBContext)
+        public HomeController(IWebHostEnvironment webHostEnvironment,
+            IEmailService emailService, 
+            ApplicationDbContext dBContext, 
+            IMemoryCache memoryCache)
         {
             _webHostEnvironment = webHostEnvironment;
             _emailService = emailService;
             _dbContext = dBContext;
+            _memoryCache = memoryCache;
         }
 
         public IActionResult Index()
@@ -97,9 +105,39 @@ namespace NAIS_Website.Controllers
             return View();
         }
 
-        public IActionResult Catalog()
+        public async Task<IActionResult> Catalog()
         {
+            ViewBag.Catalogs = await GetUniqueCatalog();
             return View();
+        }
+
+        public async Task<List<CatalogViewModel>> GetUniqueCatalog()
+        {
+            if (!_memoryCache.TryGetValue("UniqueCatalog", out List<CatalogViewModel> cachedCatalog))
+            {
+                var query = from catalog in _dbContext.Catalog
+                            join catalogCategory in _dbContext.CatalogCategory
+                            on catalog.Category equals catalogCategory.Id into catalogGroup
+                            from catalogCategory in catalogGroup.DefaultIfEmpty()
+                            where !catalog.DeleteStatus
+                            && catalog.Id == (from c1 in _dbContext.Catalog
+                                              where c1.Category == catalog.Category && !c1.DeleteStatus
+                                              select c1.Id).Max()
+                            orderby catalog.Category
+                            select new CatalogViewModel
+                            {
+                                Id = catalog.Id,
+                                Name = catalog.Name ?? string.Empty,
+                                Category = catalog.Category,
+                                CategoryName = catalogCategory != null ? catalogCategory.Name ?? string.Empty : string.Empty,
+                                ImagePath = catalog.ImagePath ?? string.Empty
+                            };
+
+                cachedCatalog = await query.ToListAsync();
+
+                _memoryCache.Set("UniqueCatalog", cachedCatalog, CacheDuration);
+            }
+            return cachedCatalog;
         }
 
         public IActionResult Privacy()

@@ -1,7 +1,19 @@
 ﻿@{
     ViewData["Title"] = "Catalog";
     Layout = "_Layout";
+    var catalogs = ViewBag.catalogs;
 }
 
-<h2>Catalog</h2>
-<p>Catalog page content goes here.</p>
+<div class="album-container">
+    @foreach (var catalog in catalogs)
+    {
+        <div class="album-card" onclick="window.location.href='@Url.Action("Details", "Catalog", new { category = catalog.Category })'">
+            <div class="album-cover">
+                <img src="~/@catalog.ImagePath" alt="@catalog.CategoryName" />
+            </div>
+            <div class="album-title">
+                <h4>@catalog.CategoryName</h4>
+            </div>
+        </div>
+    }
+</div>
