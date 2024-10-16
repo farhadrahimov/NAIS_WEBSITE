@@ -1,0 +1,49 @@
+﻿@{
+    ViewData["Title"] = "Details";
+    Layout = "_Layout";
+    var catalogs = ViewBag.catalogs;
+    var categoryName = ViewBag.CategoryName;
+}
+
+<div class="dt-album-container">
+    <div class="dt-header">
+        <div class="dt-backButtonContainer">
+            <a asp-action="Catalog" asp-controller="Home" class="dt-btnBack">← Geriyə qayıt</a>
+        </div>
+        <h1 class="dt-page-title">@categoryName</h1>
+    </div>
+    @if (!string.IsNullOrEmpty(ViewBag.Error))
+    {
+        <h2 class="dt-error-message">@ViewBag.Error</h2>
+    }
+    else if (catalogs != null && catalogs.Count > 0)
+    {
+        <div class="dt-card-grid">
+            @foreach (var catalog in catalogs)
+            {
+                <div class="dt-album-card" onclick="openModal('@Url.Content("~/" + catalog.ImagePath.Replace("\\", "/"))', '@catalog.Name')">
+                    <div class="dt-album-cover">
+                        <img src="~/@catalog.ImagePath" alt="@catalog.Name" />
+                    </div>
+                    <div class="dt-album-title">
+                        <h4>@catalog.Name</h4>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <h2 class="dt-error-message">Məlumat tapılmadı</h2>
+    }
+</div>
+
+<!-- Modal Window -->
+<div id="modal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <div class="modal-content">
+        <img id="modal-img">
+        <div id="caption"></div>
+    </div>
+</div>
+

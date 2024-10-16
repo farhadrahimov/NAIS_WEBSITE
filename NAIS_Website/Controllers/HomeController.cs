@@ -16,15 +16,15 @@ namespace NAIS_Website.Controllers
 
     public class HomeController : Controller
     {
+        private readonly ApplicationDbContext _dbContext;
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IEmailService _emailService;
         private readonly IMemoryCache _memoryCache;
-        private readonly ApplicationDbContext _dbContext;
         private readonly TimeSpan CacheDuration = TimeSpan.FromMinutes(10);
 
         public HomeController(IWebHostEnvironment webHostEnvironment,
-            IEmailService emailService, 
-            ApplicationDbContext dBContext, 
+            IEmailService emailService,
+            ApplicationDbContext dBContext,
             IMemoryCache memoryCache)
         {
             _webHostEnvironment = webHostEnvironment;
@@ -107,37 +107,113 @@ namespace NAIS_Website.Controllers
 
         public async Task<IActionResult> Catalog()
         {
-            ViewBag.Catalogs = await GetUniqueCatalog();
+            try
+            {
+                ViewBag.Catalogs = await GetUniqueCatalog();
+
+                if (ViewBag.Catalogs == null)
+                {
+                    ViewBag.Error = "Kataloq məlumatları tapılmadı";
+                }
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = $"Xəta baş verdi: {ex.Message}";
+            }
             return View();
         }
 
         public async Task<List<CatalogViewModel>> GetUniqueCatalog()
         {
-            if (!_memoryCache.TryGetValue("UniqueCatalog", out List<CatalogViewModel> cachedCatalog))
+            try
             {
-                var query = from catalog in _dbContext.Catalog
-                            join catalogCategory in _dbContext.CatalogCategory
-                            on catalog.Category equals catalogCategory.Id into catalogGroup
-                            from catalogCategory in catalogGroup.DefaultIfEmpty()
-                            where !catalog.DeleteStatus
-                            && catalog.Id == (from c1 in _dbContext.Catalog
-                                              where c1.Category == catalog.Category && !c1.DeleteStatus
-                                              select c1.Id).Max()
-                            orderby catalog.Category
-                            select new CatalogViewModel
-                            {
-                                Id = catalog.Id,
-                                Name = catalog.Name ?? string.Empty,
-                                Category = catalog.Category,
-                                CategoryName = catalogCategory != null ? catalogCategory.Name ?? string.Empty : string.Empty,
-                                ImagePath = catalog.ImagePath ?? string.Empty
-                            };
+                if (!_memoryCache.TryGetValue("UniqueCatalog", out List<CatalogViewModel> cachedCatalog))
+                {
+                    var query = from catalog in _dbContext.Catalog
+                                join catalogCategory in _dbContext.CatalogCategory
+                                on catalog.Category equals catalogCategory.Id into catalogGroup
+                                from catalogCategory in catalogGroup.DefaultIfEmpty()
+                                where !catalog.DeleteStatus
+                                && catalog.Id == (from c1 in _dbContext.Catalog
+                                                  where c1.Category == catalog.Category && !c1.DeleteStatus
+                                                  select c1.Id).Max()
+                                orderby catalog.Category
+                                select new CatalogViewModel
+                                {
+                                    Id = catalog.Id,
+                                    Name = catalog.Name ?? string.Empty,
+                                    Category = catalog.Category,
+                                    CategoryName = catalogCategory != null ? catalogCategory.Name ?? string.Empty : string.Empty,
+                                    ImagePath = catalog.ImagePath ?? string.Empty
+                                };
 
-                cachedCatalog = await query.ToListAsync();
+                    cachedCatalog = await query.ToListAsync();
 
-                _memoryCache.Set("UniqueCatalog", cachedCatalog, CacheDuration);
+                    _memoryCache.Set("UniqueCatalog", cachedCatalog, CacheDuration);
+                }
+
+                return cachedCatalog ?? new List<CatalogViewModel>();
             }
-            return cachedCatalog;
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error fetching catalog: {ex.Message}");
+                return new List<CatalogViewModel>();
+            }
+        }
+
+        public async Task<List<Catalog>> GetCatalogByCategory(int categoryId)
+        {
+            try
+            {
+                if (categoryId != 0)
+                {
+                    if (!_memoryCache.TryGetValue($"CatalogByCategory_{categoryId}", out List<Catalog> cachedCatalog))
+                    {
+                        var data = _dbContext.Catalog.Where(x => x.Category == categoryId);
+                        cachedCatalog = await data.ToListAsync();
+
+                        _memoryCache.Set($"CatalogByCategory_{categoryId}", cachedCatalog, CacheDuration);
+                    }
+                    return cachedCatalog ?? new List<Catalog>();
+                }
+                else
+                {
+                    return new List<Catalog>();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error fetching catalog: {ex.Message}");
+                return new List<Catalog>();
+            }
+        }
+
+        public async Task<IActionResult> Details(int categoryId, string CategoryName)
+        {
+            try
+            {
+                if (categoryId == 0)
+                {
+                    ViewBag.Error = "Məlumat tapılmadı";
+                    return View();
+                }
+
+                var catalogs = await GetCatalogByCategory(categoryId);
+
+                if (catalogs == null)
+                {
+                    ViewBag.Error = "Məlumat tapılmadı";
+                    return View();
+                }
+
+                ViewBag.Catalogs = catalogs;
+                ViewBag.CategoryName = CategoryName;
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = $"Xəta baş verdi: {ex.Message}";
+            }
+            return View();
         }
 
         public IActionResult Privacy()
@@ -150,7 +226,5 @@ namespace NAIS_Website.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
-
     }
 }
