@@ -17,23 +17,35 @@ namespace NAIS_Website.Controllers
                         new XElement(ns + "changefreq", "daily"),
                         new XElement(ns + "priority", "1.0")
                     ),
-                    new XElement(ns + "url",
-                        new XElement(ns + "loc", $"{Request.Scheme}://{Request.Host}/home/aboutus"),
+                     new XElement(ns + "url",
+                        new XElement(ns + "loc", $"{Request.Scheme}://{Request.Host}/home/contact"),
                         new XElement(ns + "lastmod", DateTime.Now.ToString("yyyy-MM-dd")),
                         new XElement(ns + "changefreq", "weekly"),
                         new XElement(ns + "priority", "0.8")
                     ),
+                       new XElement(ns + "url",
+                        new XElement(ns + "loc", $"{Request.Scheme}://{Request.Host}/home/services"),
+                        new XElement(ns + "lastmod", DateTime.Now.ToString("yyyy-MM-dd")),
+                        new XElement(ns + "changefreq", "weekly"),
+                        new XElement(ns + "priority", "0.5")
+                    ),
                     new XElement(ns + "url",
-                        new XElement(ns + "loc", $"{Request.Scheme}://{Request.Host}/home/contact"),
+                        new XElement(ns + "loc", $"{Request.Scheme}://{Request.Host}/home/aboutus"),
                         new XElement(ns + "lastmod", DateTime.Now.ToString("yyyy-MM-dd")),
                         new XElement(ns + "changefreq", "weekly"),
                         new XElement(ns + "priority", "0.7")
                     ),
-                      new XElement(ns + "url",
-                        new XElement(ns + "loc", $"{Request.Scheme}://{Request.Host}/home/services"),
+                    new XElement(ns + "url",
+                        new XElement(ns + "loc", $"{Request.Scheme}://{Request.Host}/home/partners"),
                         new XElement(ns + "lastmod", DateTime.Now.ToString("yyyy-MM-dd")),
                         new XElement(ns + "changefreq", "weekly"),
-                        new XElement(ns + "priority", "0.6")
+                        new XElement(ns + "priority", "0.5")
+                    ),
+                    new XElement(ns + "url",
+                        new XElement(ns + "loc", $"{Request.Scheme}://{Request.Host}/home/catalog"),
+                        new XElement(ns + "lastmod", DateTime.Now.ToString("yyyy-MM-dd")),
+                        new XElement(ns + "changefreq", "weekly"),
+                        new XElement(ns + "priority", "0.8")
                     )
                 )
             );

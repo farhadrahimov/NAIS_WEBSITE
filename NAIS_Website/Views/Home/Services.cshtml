@@ -1,25 +1,40 @@
 ﻿@{
     ViewData["Title"] = "Services";
     Layout = "_Layout";
-    var imageData = ViewBag.ImageData as List<NAIS_Website.Controllers.FileModel>;
 }
+
+@model List<ServicesJsonModel>
 
 <div class="ag-format-container">
     <h1 class="page-title">Xidmətlərimiz</h1>
     <div class="service-divider"></div>
     <div class="ag-courses_box">
-        @foreach (var image in imageData)
+        @foreach (var service in Model)
         {
             <div class="ag-courses_item">
-                <a href="/Services/Detail/1" class="ag-courses-item_link">
+                <a class="ag-courses-item_link"
+                   data-img="@Url.Content("~/files/photos/services/details/" + service.Image)"
+                   data-title="@service.Name"
+                   data-content="@Html.Raw(service.Content)"
+                   onclick="openModalWithContent(this)">
                     <div class="ag-courses-item_bg"></div>
-                    <img src="~/files/photos/services/@image.FileName" alt="Service Image" class="service-image" />
-                    <h3 class="ag-courses-item_title">@image.FileNameWithoutExtension</h3>
-                    <div class="ag-courses-item_date-box">
-                        <span class="ag-courses-item_date">Service Description</span>
-                    </div>
+                    <img src="~/files/photos/services/@service.Image" alt="Service Image" class="service-image" />
+                    <h3 class="ag-courses-item_title">@service.Name</h3>
                 </a>
             </div>
         }
+    </div>
+</div>
+<!-- Modal Window -->
+<div id="modal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <div class="service-modal-content">
+        <div class="modal-left">
+            <img class="service-modal-img" id="modal-img" src="" alt="Modal Image">
+        </div>
+        <div class="modal-right">
+            <h3 id="modal-title"></h3>
+            <div class="service-modal-text" id="modal-text"></div>
+        </div>
     </div>
 </div>

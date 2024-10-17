@@ -1,0 +1,145 @@
+﻿/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 40%;
+    max-height: 40%;
+    border-radius: 10px;
+}
+
+    .modal-content img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#caption {
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+    margin-top: 15px;
+    padding: 10px;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+    .close:hover, .close:focus {
+        color: #bbb;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+.service-modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    width: 80%;
+    max-width: 900px;
+    height: 70vh; /* Фиксированная высота */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+/* Левая часть с изображением */
+.modal-left {
+    flex: 1.5; /* Увеличиваем ширину изображения */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 20px;
+}
+
+.service-modal-img {
+    width: 100%; /* Изображение занимает всю ширину родительского блока */
+    height: auto; /* Высота изображения сохраняет пропорции */
+    border-radius: 8px;
+    object-fit: cover; /* Изображение адаптируется к размеру блока */
+}
+
+/* Правая часть с текстом */
+.modal-right {
+    flex: 0.5; /* Меньше места для текста */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto; /* Прокрутка если контент выходит за пределы */
+    padding-left: 20px;
+}
+
+/* Заголовок модального окна */
+#modal-title {
+    font-size: 24px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+/* Текст модального окна */
+.service-modal-text {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Стиль для скролла */
+.modal-right::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-right::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+}
+
+/* Респонсивный дизайн */
+@media (max-width: 768px) {
+    .service-modal-content {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .modal-left {
+        padding-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .modal-right {
+        padding-left: 0;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .dt-modal-content {
+        width: 100%;
+    }
+}

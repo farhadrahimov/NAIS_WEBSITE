@@ -25,7 +25,7 @@
 }
 
 .dt-btnBack {
-    background-color: #329dcd;
+    background-color: #A3BBF2;
     color: white;
     padding: 10px 20px;
     text-decoration: none;
@@ -35,7 +35,7 @@
 }
 
     .dt-btnBack:hover {
-        background-color: #ffffff;
+        background-color: #593f5f;
         transform: translateY(-2px);
         color: black;
     }
@@ -90,71 +90,4 @@
 .dt-album-title {
     padding: 10px;
     color: #555;
-}
-
-/* Modal Styles */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    padding-top: 100px;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-}
-
-.modal-content {
-    margin: auto;
-    display: block;
-    max-width: 40%;
-    max-height: 40%;
-    border-radius: 10px;
-}
-
-    .modal-content img {
-        width: 100%;
-        height: auto;
-        object-fit: contain;
-    }
-
-.close {
-    position: absolute;
-    top: 20px;
-    right: 35px;
-    color: #fff;
-    font-size: 40px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-#caption {
-    text-align: center;
-    color: #fff;
-    font-size: 18px;
-    margin-top: 15px;
-    padding: 10px;
-}
-
-.close {
-    position: absolute;
-    top: 20px;
-    right: 35px;
-    color: #fff;
-    font-size: 40px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-    .close:hover, .close:focus {
-        color: #bbb;
-        text-decoration: none;
-        cursor: pointer;
-    }
-
-@media only screen and (max-width: 700px) {
-    .dt-modal-content {
-        width: 100%;
-    }
 }

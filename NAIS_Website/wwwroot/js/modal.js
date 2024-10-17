@@ -9,6 +9,17 @@ function openModal(imagePath, name) {
     captionText.innerHTML = name;
 }
 
+function openModalWithContent(element) {
+    var imgSrc = element.getAttribute('data-img');
+    var title = element.getAttribute('data-title');
+    var content = element.getAttribute('data-content');
+
+    document.getElementById("modal-img").src = imgSrc;
+    document.getElementById("modal-title").innerText = title;
+    document.getElementById("modal-text").innerText = content.split('/').pop();
+    document.getElementById("modal").style.display = "block";
+}
+
 // Close the modal
 function closeModal() {
     var modal = document.getElementById("modal");

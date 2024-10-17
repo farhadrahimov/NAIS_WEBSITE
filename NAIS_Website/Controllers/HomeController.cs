@@ -5,6 +5,7 @@ using NAIS_Website.Database;
 using NAIS_Website.Models;
 using NAIS_Website.Services;
 using System.Diagnostics;
+using System.Text.Json;
 
 namespace NAIS_Website.Controllers
 {
@@ -74,15 +75,22 @@ namespace NAIS_Website.Controllers
         public IActionResult Services()
         {
             var folderPath = Path.Combine(_webHostEnvironment.WebRootPath, "files/photos/services");
-            var imageData = Directory.GetFiles(folderPath)
-                                .Select(file => new FileModel
-                                {
-                                    FileName = Path.GetFileName(file),
-                                    FileNameWithoutExtension = Path.GetFileNameWithoutExtension(file)
-                                })
-                                .ToList();
-            ViewBag.ImageData = imageData;
-            return View();
+            var filePath = Path.Combine(folderPath, "services.json");
+
+            var serviceData = new List<ServicesJsonModel>();
+
+            if (System.IO.File.Exists(filePath))
+            {
+                using (var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                {
+                    serviceData = JsonSerializer.Deserialize<List<ServicesJsonModel>>(stream);
+                }
+            }
+            else
+            {
+                ViewBag.Error = "Error";
+            }
+            return View(serviceData);
         }
 
         public IActionResult Calculating()

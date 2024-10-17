@@ -1,0 +1,56 @@
+﻿[
+  {
+    "Id": 1,
+    "Name": "Broşürləmə",
+    "Content": "Çap edilmiş vərəqlərin metal yay ilə bir-birinə bərkidilməsi prosesidir. Bloknotların , jurnalların və s. vərəqlərinin birləşdirilməsində istifadə olunur.",
+    "Image": "Broşürləmə.jpg"
+  },
+  {
+    "Id": 2,
+    "Name": "Çatdırılma xidməti",
+    "Content": "İstehsal etdiyimiz məhsulların çatdırılması prosesi, müştəri məmnuniyyətini prioritet olaraq nəzərə alır və etibarlı şəkildə çatdırılma xidməti göstəririk.",
+    "Image": "Çatdırılma xidməti.jpg"
+  },
+  {
+    "Id": 3,
+    "Name": "Kəsim",
+    "Content": "Kağızı dəqiq ölçülərdə kəsmək və ya formalaşdırmaq üçün işlədilir, belə ki, nəticə mükəmməl simmetrik olur.",
+    "Image": "Kəsim.jpg"
+  },
+  {
+    "Id": 4,
+    "Name": "Laminasiya",
+    "Content": "Kağız, karton və ya digər materialların səthini qorumaq və gücləndirmək üçün şəffaf plastik təbəqə ilə örtülməsi prosesidir. Laminasiya, materialı su, ləkə, yıpranma və cırılmadan qoruyur, eyni zamanda ona parlaq və ya mat bir görünüş verir. Bu texnika menyuların və digər çap məhsullarının uzunömürlü olmasını təmin etmək üçün istifadə olunur.",
+    "Image": "Laminasiya.jpg"
+  },
+  {
+    "Id": 5,
+    "Name": "Ofset Çapı",
+    "Content": "Böyük miqyaslı və yüksək keyfiyyətli çap işləri üçün istifadə edilən ən yaygın çap texnologiyalarından biridir. Bu texnikada çap ediləcək görüntü əvvəlcə metal plitəyə köçürülür, daha sonra bu görüntü kauçuk silindrə ötürülür və son olaraq kağıza çap olunur. Ofset termini, görüntünün əvvəlcə araçı vasitəsilə (kauçuk) kağıza ötürülməsini ifadə edir.\n\nOfset çapının xüsusiyyətləri:\n• Yüksək keyfiyyət: Çox detallı və dəqiq görüntü əldə etmək mümkündür.\n• Sürətli və səmərəli: Böyük tirajlı işlərdə iqtisadi və sürətli çap təmin edir.\n• Çoxlu material növləri: Kağızdan əlavə plastik, karton və s. üzərində də çap mümkündür.\n\nBu metod kitab, jurnal, broşura və digər reklam məhsullarının çapında geniş istifadə olunur.",
+    "Image": "Ofset Çapı.jpg"
+  },
+  {
+    "Id": 6,
+    "Name": "Perforasiya",
+    "Content": "Kağıza dəliklər açaraq, kağızın müəyyən hissələrini asanlıqla ayırmağa imkan verir. Məsələn, fakturalarda, biletlərdə və kuponlarda istifadə olunan kəsilməli hissələri ayırmaq üçün bu metod faydalıdır.",
+    "Image": "Perforasiya.jpg"
+  },
+  {
+    "Id": 7,
+    "Name": "Qatlama",
+    "Content": "Çap məhsullarını (jurnal, broşura və s.) avtomatik və dəqiq şəkildə qatlamaq üçün istifadə olunan bir prosesdir. Müxtəlif qatlama növləri (Z-qatlama, C-qatlama, tək qatlama və s.) təklif edilir və kağızın ölçüsünə, qalınlığına uyğun tənzimlənir.",
+    "Image": "Qatlama.jpg"
+  },
+  {
+    "Id": 8,
+    "Name": "Stiker Çapı",
+    "Content": "Yapışqanlı material üzərində şəkil, mətn və ya dizaynın çap edilməsi prosesidir. Bu çap texnologiyası stikerlərin (etiketlərin) hazırlanmasında istifadə olunur və reklam, qablaşdırma, məhsul etiketləməsi kimi bir çox sahədə geniş tətbiq edilir. Stiker çapında müxtəlif çap texnikaları (ofset, digital, UV çap və s.) və materiallar (kağız, vinil, plastik) istifadə oluna bilər.\n\nHazır məhsul, səthlərə asanlıqla yapışan və uzun müddət qalıcı olan stikerlərdir.",
+    "Image": "Stiker Çapı.jpg"
+  },
+  {
+    "Id": 9,
+    "Name": "Xüsusi kəsim (BEQOVKA)",
+    "Content": "Xüsusi avadanlığın köməyi ilə mətbəə işlərində kağızın müəyyən formaya uyğun  kəsilməsi və düzgün şəkildə qatlanması üçün üzərinə yüngül izlər salınır. Bu izlər, məsələn, broşür və ya qutuların kənarlarının səliqəli qatlanmasına kömək edir.",
+    "Image": "Xüsusi kəsim (BEQOVKA).jpg"
+  }
+]
