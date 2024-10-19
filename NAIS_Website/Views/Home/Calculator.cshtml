@@ -1,0 +1,88 @@
+﻿@{
+    ViewData["Title"] = "Calculator";
+    Layout = "_Layout";
+}
+
+@model List<Product>
+
+<div class="calculator-container">
+    <form asp-controller="Home" asp-action="Calculator" method="post" class="calculator-form">
+        <h2>Kalkulyator</h2>
+
+        <div class="form-group">
+            <label for="product">Məhsulu seçin:</label>
+            <select id="product" name="product" asp-items="@(new SelectList(Model, "Name", "Name"))">
+                <option value="">-Məhsulu seçin-</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="size">Ölçünü seçin:</label>
+            <select id="size" name="size">
+                <option value="">-Ölçünü seçin-</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="quantity">Sayını seçin:</label>
+            <select id="quantity" name="quantity">
+                <option value="">-Sayını seçin-</option>
+            </select>
+        </div>
+
+        <button type="submit">Hesabla</button>
+    </form>
+
+    <div id="price">
+        @if (ViewBag.Price != null)
+        {
+            <p>Yekun qiymət: <span class="price-value">@ViewBag.Price AZN</span></p>
+        }
+    </div>
+</div>
+
+<script>
+    document.getElementById('product').addEventListener('change', function () {
+        var product = this.value;
+        var sizeSelect = document.getElementById('size');
+        var quantitySelect = document.getElementById('quantity');
+
+        if (product) {
+            // Выполним AJAX-запрос на сервер для получения размеров
+            fetch('@Url.Action("GetSizes", "Home")?product=' + encodeURIComponent(product))
+                .then(response => response.json())
+                .then(sizes => {
+                    sizes.forEach(function (size) {
+                        var option = document.createElement('option');
+                        option.value = size;
+                        option.text = size;
+                        sizeSelect.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Xəta:', error));
+        }
+    });
+
+    document.getElementById('size').addEventListener('change', function () {
+        var product = document.getElementById('product').value;
+        var size = this.value;
+        var quantitySelect = document.getElementById('quantity');
+
+        if (product && size) {
+            // Выполним AJAX-запрос на сервер для получения количеств
+            fetch('@Url.Action("GetQuantities", "Home")?product=' + encodeURIComponent(product) + '&size=' + encodeURIComponent(size))
+                .then(response => response.json())
+                .then(quantities => {
+                    console.log('Quantities received:', quantities);  // Проверка, что получаем правильные данные
+
+                    quantities.forEach(function (quantity) {
+                        var option = document.createElement('option');
+                        option.value = quantity;
+                        option.text = quantity;
+                        quantitySelect.appendChild(option);  // Добавляем опции в выпадающий список
+                    });
+                })
+                .catch(error => console.error('Ошибка при получении количеств:', error));
+        }
+    });
+</script>

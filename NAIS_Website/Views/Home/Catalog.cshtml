@@ -4,24 +4,28 @@
     var catalogs = ViewBag.catalogs;
 }
 
-<div class="album-container">
+<div class="catalog-page">
+    <h1 class="page-title">Kateqoriyalar</h1>
+    <div class="catalog-divider"></div>
     @if (!string.IsNullOrEmpty(ViewBag.Error))
     {
         <h2>@ViewBag.Error</h2>
     }
     else if (catalogs != null)
     {
-        @foreach (var catalog in catalogs)
-        {
-            <div class="album-card" onclick="window.location.href='@Url.Action("Details", "Home", new { categoryId = catalog.Category, categoryName = catalog.CategoryName })'">
-                <div class="album-cover">
-                    <img src="~/@catalog.ImagePath" alt="@catalog.CategoryName" />
+        <div class="album-container">
+            @foreach (var catalog in catalogs)
+            {
+                <div class="album-card" onclick="window.location.href='@Url.Action("Details", "Home", new { categoryId = catalog.Category, categoryName = catalog.CategoryName })'">
+                    <div class="album-cover">
+                        <img src="~/@catalog.ImagePath" alt="@catalog.CategoryName" />
+                    </div>
+                    <div class="album-title">
+                        <h4>@catalog.CategoryName</h4>
+                    </div>
                 </div>
-                <div class="album-title">
-                    <h4>@catalog.CategoryName</h4>
-                </div>
-            </div>
-        }
+            }
+        </div>
     }
     else
     {

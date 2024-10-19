@@ -26,13 +26,12 @@ namespace NAIS_Website.Services
                 var email = new MimeMessage();
 
                 email.From.Add(new MailboxAddress(model.Name, model.Email));
-                //email.ReplyTo.Add(new MailboxAddress(model.Name, model.Email));
                 email.To.Add(new MailboxAddress("", "farxadjr@gmail.com"));
-                email.Subject = "Сообщение от " + model.Name;
+                email.Subject = "Kimdən: " + model.Name;
 
                 email.Body = new TextPart(MimeKit.Text.TextFormat.Text)
                 {
-                    Text = $"Имя: {model.Name}\nEmail: {model.Email}\nСообщение:\n{model.Message}"
+                    Text = $"Ad: {model.Name}\nEmail: {model.Email}\nTelefon: {model.PhoneNumber}\nMesaj:\n{model.Message}"
                 };
 
                 using (var client = new SmtpClient())

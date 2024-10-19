@@ -1,7 +1,7 @@
 ﻿.page-title {
     color: #333;
     text-align: center;
-    margin-bottom: 20px; /* Уменьшил отступ для гармонии с линией */
+    margin-bottom: 20px;
     font-size: 2.5rem;
 }
 
@@ -10,7 +10,6 @@
     flex-direction: column;
     align-items: center;
     background-color: #f9f9f9;
-    padding: 50px;
     width: 100%;
     margin: 0 auto;
     border-radius: 12px;
@@ -19,11 +18,11 @@
 
 .service-divider {
     align-self: center;
-    width: 80%; /* Ширина линии */
-    height: 5px; /* Толщина линии */
-    background-color: #d2c3cb; /* Цвет линии */
-    margin-bottom: 20px; /* Отступы сверху и снизу */
-    border-radius: 2px; /* Скругление для аккуратности */
+    width: 60%;
+    height: 5px;
+    background-color: #d2c3cb;
+    margin-bottom: 20px;
+    border-radius: 2px;
 }
 
 .ag-courses_box {
@@ -45,12 +44,12 @@
     display: flex;
     flex-direction: column;
     height: 350px;
-    position: relative; /* Ensure relative positioning for the background animation */
-    transition: transform 0.3s ease; /* Add animation for hover effect */
+    position: relative;
+    transition: transform 0.3s ease;
 }
 
     .ag-courses_item:hover {
-        transform: scale(1.05); /* Slight zoom effect on hover */
+        transform: scale(1.05);
     }
 
 .ag-courses-item_link {
@@ -102,11 +101,11 @@
     top: -75px;
     right: -75px;
     border-radius: 50%;
-    transition: transform 0.5s ease; /* Ensure background animation on hover */
+    transition: transform 0.5s ease;
 }
 
 .ag-courses-item_link:hover .ag-courses-item_bg {
-    transform: scale(10); /* The scaling effect when hovered */
+    transform: scale(10);
 }
 
 .ag-courses_item:nth-child(2n) .ag-courses-item_bg {

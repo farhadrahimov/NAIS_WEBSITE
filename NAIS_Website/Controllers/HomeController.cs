@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
+using NAIS_Website.Data;
 using NAIS_Website.Database;
 using NAIS_Website.Models;
 using NAIS_Website.Services;
@@ -44,14 +45,13 @@ namespace NAIS_Website.Controllers
             return View();
         }
 
-        [HttpGet]
-        public IActionResult Contact()
+        public IActionResult Offering()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Contact(EmailModel emailModel)
+        public async Task<IActionResult> Offering(EmailModel emailModel)
         {
             if (!ModelState.IsValid)
             {
@@ -62,13 +62,18 @@ namespace NAIS_Website.Controllers
 
             if (isEmailSent)
             {
-                ViewBag.Message = "Your message has been sent successfully!";
+                ViewBag.Message = "Uğurla göndərildi!";
             }
             else
             {
-                ViewBag.Message = "There was an error sending your message. Please try again later.";
+                ViewBag.Message = "Xəta baş verdi. Yenidən cəhd edin";
             }
 
+            return View();
+        }
+
+        public IActionResult Contact()
+        {
             return View();
         }
 
@@ -93,9 +98,29 @@ namespace NAIS_Website.Controllers
             return View(serviceData);
         }
 
-        public IActionResult Calculating()
+        public IActionResult Calculator()
         {
-            return View();
+            var products = Products.GetProducts();
+            return View(products);
+        }
+
+        [HttpPost]
+        public IActionResult Calculator(string product, string size, int quantity)
+        {
+            var products = Products.GetProducts();
+            var selectedProduct = products.FirstOrDefault(p => p.Name == product);
+
+            if (selectedProduct != null && selectedProduct.Prices.ContainsKey((size, quantity)))
+            {
+                decimal price = selectedProduct.Prices[(size, quantity)];
+                ViewBag.Price = price;
+            }
+            else
+            {
+                ViewBag.Price = "-";
+            }
+
+            return View(products);
         }
 
         public IActionResult Partners()
@@ -131,6 +156,80 @@ namespace NAIS_Website.Controllers
             return View();
         }
 
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public async Task<IActionResult> Details(int categoryId, string CategoryName)
+        {
+            try
+            {
+                if (categoryId == 0)
+                {
+                    ViewBag.Error = "Məlumat tapılmadı";
+                    return View();
+                }
+
+                var catalogs = await GetCatalogByCategory(categoryId);
+
+                if (catalogs == null)
+                {
+                    ViewBag.Error = "Məlumat tapılmadı";
+                    return View();
+                }
+
+                ViewBag.Catalogs = catalogs;
+                ViewBag.CategoryName = CategoryName;
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = $"Xəta baş verdi: {ex.Message}";
+            }
+            return View();
+        }
+
+        #region Functions
+        [HttpGet]
+        public JsonResult GetSizes(string product)
+        {
+            var products = Products.GetProducts();
+            var selectedProduct = products.FirstOrDefault(p => p.Name == product);
+
+            if (selectedProduct != null)
+            {
+                return Json(selectedProduct.Sizes);
+            }
+
+            return Json(new List<string>());
+        }
+        [HttpGet]
+        public JsonResult GetQuantities(string product, string size)
+        {
+            var products = Products.GetProducts();
+            var selectedProduct = products.FirstOrDefault(p => p.Name == product);
+
+            if (selectedProduct != null)
+            {
+                var quantities = selectedProduct.Prices
+                    .Where(p => p.Key.Item1 == size)
+                    .Select(p => p.Key.Item2)
+                    .ToList();
+
+                if (quantities.Any())
+                {
+                    return Json(quantities);
+                }
+            }
+
+            return Json(new List<int>());
+        }
         public async Task<List<CatalogViewModel>> GetUniqueCatalog()
         {
             try
@@ -168,7 +267,6 @@ namespace NAIS_Website.Controllers
                 return new List<CatalogViewModel>();
             }
         }
-
         public async Task<List<Catalog>> GetCatalogByCategory(int categoryId)
         {
             try
@@ -195,44 +293,6 @@ namespace NAIS_Website.Controllers
                 return new List<Catalog>();
             }
         }
-
-        public async Task<IActionResult> Details(int categoryId, string CategoryName)
-        {
-            try
-            {
-                if (categoryId == 0)
-                {
-                    ViewBag.Error = "Məlumat tapılmadı";
-                    return View();
-                }
-
-                var catalogs = await GetCatalogByCategory(categoryId);
-
-                if (catalogs == null)
-                {
-                    ViewBag.Error = "Məlumat tapılmadı";
-                    return View();
-                }
-
-                ViewBag.Catalogs = catalogs;
-                ViewBag.CategoryName = CategoryName;
-            }
-            catch (Exception ex)
-            {
-                ViewBag.Error = $"Xəta baş verdi: {ex.Message}";
-            }
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+        #endregion
     }
 }

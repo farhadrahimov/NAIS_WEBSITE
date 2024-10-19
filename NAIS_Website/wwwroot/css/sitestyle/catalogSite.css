@@ -1,4 +1,24 @@
-﻿/* General Styles */
+﻿/* Catalog Page General Styles */
+.catalog-page {
+    text-align: center;
+    width: 100%;
+}
+
+.page-title {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.catalog-divider {
+    width: 60%;
+    height: 5px;
+    background-color: #d2c3cb;
+    margin: 20px auto;
+    border-radius: 2px;
+}
+
+/* Grid for Cards */
 .album-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */

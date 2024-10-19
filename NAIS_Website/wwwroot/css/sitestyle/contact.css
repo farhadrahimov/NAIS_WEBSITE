@@ -1,76 +1,26 @@
-﻿.contact-container {
-    padding: 50px;
-    max-width: 600px;
-    margin: 50px auto; /* Центрирование контейнера с одинаковыми отступами */
-    background-color: #ffffff;
-    border-radius: 15px; /* Более закругленные углы */
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1); /* Более выраженная тень */
-    border: 2px solid rgba(248, 25, 107, 0.2); /* Добавляем тонкую границу */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Добавляем анимацию */
+﻿/* Стиль для страницы "Contact Us" */
+.contact-us {
+    margin-top: 50px;
 }
 
-    .contact-container:hover {
-        transform: translateY(-10px); /* Легкий подъем при наведении */
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15); /* Увеличение тени */
-    }
+.map-container {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
 
-    .contact-container h1 {
-        font-size: 2.5rem;
-        color: #333;
+.contact-info {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+    .contact-info h3 {
         margin-bottom: 20px;
-        text-align: center;
     }
 
-    .contact-container .form-group {
-        margin-bottom: 20px; /* Увеличенный отступ между элементами */
+    .contact-info p {
+        margin: 10px 0;
+        font-size: 16px;
     }
-
-    .contact-container .form-control {
-        width: 100%;
-        padding: 12px; /* Увеличенный padding */
-        border-radius: 8px; /* Более мягкие углы */
-        border: 1px solid #ddd;
-        font-size: 16px; /* Чуть больше шрифт */
-        transition: border 0.3s ease;
-    }
-
-        .contact-container .form-control:focus {
-            border-color: #f8196b; /* Изменение цвета границы при фокусе */
-            box-shadow: 0 0 8px rgba(248, 25, 107, 0.3); /* Тень при фокусе */
-        }
-
-    .contact-container .btn {
-        width: 100%;
-        padding: 12px; /* Более крупная кнопка */
-        background-color: #A3BBF2; /* Яркий цвет для кнопки */
-        color: white;
-        border: none;
-        border-radius: 8px; /* Закругленные углы */
-        font-size: 18px; /* Чуть больше шрифт */
-        cursor: pointer;
-        transition: background-color 0.3s ease, transform 0.3s ease; /* Анимация кнопки */
-    }
-
-        .contact-container .btn:hover {
-            background-color: #593f5f; /* Темный цвет при наведении */
-            transform: scale(1.05); /* Легкое увеличение при наведении */
-        }
-
-        .contact-container .btn:active {
-            transform: scale(0.98); /* Легкое уменьшение при нажатии */
-        }
-
-@media (max-width: 768px) {
-    .contact-container {
-        padding: 30px;
-        margin: 30px 15px; /* Уменьшенные отступы для мобильных устройств */
-    }
-
-        .contact-container h1 {
-            font-size: 24px; /* Уменьшаем шрифт заголовка на мобильных */
-        }
-
-        .contact-container .btn {
-            font-size: 16px; /* Уменьшаем шрифт кнопки на мобильных */
-        }
-}
