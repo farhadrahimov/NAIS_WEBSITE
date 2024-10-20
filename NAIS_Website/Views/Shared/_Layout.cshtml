@@ -59,10 +59,10 @@ baku, baki, azerbaycan, partnyorlarimiz, haqqimizda, nays, nice metbee">
                     <a href="https://www.instagram.com/naismetbee/" aria-label="Instagram"><img src="~/files/photos/Instagram_logo.png" alt="Instagram" /></a>
                     <a href="https://wa.me/message/EDW6XJYZACNQG1" aria-label="Whatsapp"><img src="~/files/photos/whatsapp.png" alt="Whatsapp" /></a>
                 </div>
-@*                <div class="languages">
-                    <a href="#">AZ</a>
-                    <a href="#">EN</a>
-                    <a href="#">RU</a>
+                @*                <div class="languages">
+                <a href="#">AZ</a>
+                <a href="#">EN</a>
+                <a href="#">RU</a>
                 </div>*@
                 <div class="footer">
                     <p>Made by Fafoo © 2024</p>
@@ -76,6 +76,15 @@ baku, baki, azerbaycan, partnyorlarimiz, haqqimizda, nays, nice metbee">
     <script>
         document.querySelector('.menu-toggle').addEventListener('click', function () {
             document.querySelector('.sidebar').classList.toggle('active');
+        });
+
+        document.addEventListener('click', function (event) {
+            var sidebar = document.querySelector('.sidebar');
+            var menuToggle = document.querySelector('.menu-toggle');
+
+            if (!sidebar.contains(event.target) && !menuToggle.contains(event.target)) {
+                sidebar.classList.remove('active');
+            }
         });
     </script>
 </body>

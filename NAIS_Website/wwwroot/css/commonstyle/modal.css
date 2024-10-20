@@ -121,20 +121,37 @@
     border-radius: 4px;
 }
 
-/* Респонсивный дизайн */
-@media (max-width: 768px) {
+@media (max-width: 576px) {
     .service-modal-content {
         flex-direction: column;
         height: auto;
+        width: 90%;
+        max-width: 100%;
     }
 
     .modal-left {
+        flex: 0;
         padding-right: 0;
         margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .service-modal-img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
     }
 
     .modal-right {
         padding-left: 0;
+        padding-right: 0;
+        flex: 0;
+        text-align: center;
+    }
+
+    .modal-content {
+        max-width: 90%;
+        max-height: 90%;
     }
 }
 
