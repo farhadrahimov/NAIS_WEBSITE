@@ -84,3 +84,53 @@
     padding: 10px;
     color: #555;
 }
+
+@media (max-width: 768px) {
+    .dt-header {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .dt-backButtonContainer {
+        text-align: center;
+    }
+
+    .dt-page-title {
+        font-size: 28px;
+    }
+
+    .dt-card-grid {
+        grid-template-columns: 1fr; /* Показывать одну колонку */
+    }
+
+    .dt-album-container {
+        padding: 20px 10px;
+    }
+}
+
+/* Для экранов менее 480px (мобильные устройства) */
+@media (max-width: 480px) {
+    .dt-header {
+        margin-bottom: 10px;
+    }
+
+    .dt-btnBack {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    .dt-page-title {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .dt-album-card {
+        max-width: 100%; /* Карточки занимают всю ширину */
+        margin-bottom: 20px;
+    }
+
+    .dt-card-grid {
+        gap: 10px;
+    }
+}

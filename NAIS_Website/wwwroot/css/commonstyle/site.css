@@ -155,15 +155,15 @@ body {
 }
 
 .content {
-    overflow-y: auto; /* Добавляем вертикальный скролл для правой части */
-    height: 100vh; /* Высота контента, чтобы заполнить экран */
+    overflow-y: auto;
+    height: 100vh;
     box-sizing: border-box;
 }
 
 .swiper-container {
     width: 100%;
     height: 100%;
-    overflow: hidden; /* Это поможет избежать тряски */
+    overflow: hidden;
 }
 
 .swiper-slide {
@@ -171,7 +171,7 @@ body {
     align-items: center;
     justify-content: center;
     background-color: #000;
-    width: 100%; /* Чтобы слайд всегда занимал всю ширину */
+    width: 100%;
 }
 
     .swiper-slide img {
@@ -179,6 +179,18 @@ body {
         height: auto;
         object-fit: cover;
     }
+
+.swiper-pagination-bullet {
+    background: white;
+    width: 12px;
+    height: 12px;
+    opacity: 1;
+    margin: 0 5px;
+}
+
+.swiper-pagination-bullet-active {
+    background: rgba(248, 25, 107, 0.8);
+}
 
     .swiper-slide .caption {
         position: absolute;
@@ -188,9 +200,10 @@ body {
         color: white;
         padding: 10px;
         border-radius: 5px;
-        font-size: 16px;
+        font-size: 20px;
         max-width: 80%;
         word-wrap: break-word;
+        transition: font-size 0.3s, padding 0.3s;
     }
 
 .menu-toggle {
@@ -214,7 +227,7 @@ body {
         left: -250px;
         width: 250px;
         height: 100%;
-        background: rgba(90,122,236, 0.9);
+        background: rgba(90, 122, 236, 0.9);
         transition: left 0.3s ease;
         z-index: 999;
     }
@@ -229,7 +242,7 @@ body {
         top: 15px;
         left: 15px;
         z-index: 1000;
-        background-color: rgba(0, 0, 0, 0.7);
+        background-color: rgba(90, 122, 236, 0.9);
         border: none;
         color: white;
         font-size: 24px;
@@ -239,7 +252,7 @@ body {
     }
 
     .menu-footer {
-        flex-direction: row;
+        flex-direction: column;
         justify-content: space-between;
     }
 
@@ -250,13 +263,50 @@ body {
     .content {
         margin-left: 0;
     }
+
+    .swiper-slide .caption {
+        font-size: 18px;
+        padding: 8px 12px;
+        bottom: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 5px;
+    }
+
+    .swiper-pagination {
+        bottom: 20px;
+    }
+
+    .swiper-pagination-bullet {
+        width: 12px;
+        height: 12px;
+        margin: 0 5px;
+        background: rgba(255, 255, 255, 0.6);
+    }
+
+    .swiper-pagination-bullet-active {
+        background: rgba(248, 25, 107, 0.9);
+    }
 }
 
 @media (max-width: 576px) {
     .swiper-slide .caption {
-        font-size: 14px;
+        font-size: 18px;
         padding: 5px;
+        bottom: 80px;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+    }
+
+    .swiper-pagination {
         bottom: 10px;
-        left: 10px;
+    }
+
+    .swiper-pagination-bullet {
+        width: 10px;
+        height: 10px;
     }
 }
