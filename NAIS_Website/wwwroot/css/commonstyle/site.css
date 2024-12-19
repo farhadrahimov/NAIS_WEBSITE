@@ -267,16 +267,19 @@ body {
     .swiper-slide .caption {
         font-size: 18px;
         padding: 8px 12px;
-        bottom: 15px;
+        top: 20px;
         left: 50%;
         transform: translateX(-50%);
         text-align: center;
         background: rgba(0, 0, 0, 0.7);
         border-radius: 5px;
+        max-width: 90%;
+        word-wrap: break-word;
+        bottom: auto;
     }
 
     .swiper-pagination {
-        bottom: 20px;
+        bottom: 10px;
     }
 
     .swiper-pagination-bullet {
@@ -293,12 +296,18 @@ body {
 
 @media (max-width: 576px) {
     .swiper-slide .caption {
-        font-size: 18px;
+        font-size: 20px;
         padding: 5px;
-        bottom: 80px;
+        top: 10px;
         left: 50%;
         transform: translateX(-50%);
         text-align: center;
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 5px;
+        max-width: 90%;
+        white-space: normal;
+        word-wrap: break-word;
+        bottom: auto;
     }
 
     .swiper-pagination {
