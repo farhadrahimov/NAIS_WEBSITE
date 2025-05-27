@@ -41,7 +41,6 @@ if (!app.Environment.IsDevelopment())
     app.UseHttpsRedirection();
 }
 
-app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseForwardedHeaders(new ForwardedHeadersOptions
